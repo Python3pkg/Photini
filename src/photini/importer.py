@@ -27,6 +27,7 @@ import six
 import re
 import shutil
 import sys
+import collections
 
 try:
     import gphoto2 as gp
@@ -285,7 +286,7 @@ class Importer(QtWidgets.QWidget):
     def new_source(self, idx):
         self.session_factory = None
         item_data = self.source_selector.itemData(idx)
-        if callable(item_data):
+        if isinstance(item_data, collections.Callable):
             # a special 'source' that's actually a method to call
             (item_data)()
             return

@@ -17,7 +17,7 @@
 ##  along with this program.  If not, see
 ##  <http://www.gnu.org/licenses/>.
 
-from __future__ import unicode_literals
+
 
 import codecs
 from datetime import datetime
@@ -101,7 +101,7 @@ class MetadataValue(object):
     def __str__(self):
         return six.text_type(self.value)
 
-    def __nonzero__(self):
+    def __bool__(self):
         return bool(self.value)
 
     def __eq__(self, other):
@@ -185,7 +185,7 @@ class FocalLength(MetadataDictValue):
             return round(float(value) * self.fl / self.fl_35, 2)
         return None
 
-    def __nonzero__(self):
+    def __bool__(self):
         return (self.fl is not None) or (self.fl_35 is not None)
 
     def contains(self, other):
@@ -660,7 +660,7 @@ class CharacterSet(String):
 
     @classmethod
     def from_iptc(cls, file_value):
-        for charset, encoding in cls.known_encodings.items():
+        for charset, encoding in list(cls.known_encodings.items()):
             if encoding == file_value:
                 return cls(charset)
         logger.warning('Unknown character encoding "%s"', repr(file_value))
@@ -691,7 +691,7 @@ class Int(MetadataValue):
     def to_exif(self):
         return '{:d}'.format(self.value)
 
-    def __nonzero__(self):
+    def __bool__(self):
         return self.value is not None
 
     def __str__(self):
@@ -705,7 +705,7 @@ class Aperture(MetadataValue):
     def to_exif(self):
         return '{:d}/{:d}'.format(self.value.numerator, self.value.denominator)
 
-    def __nonzero__(self):
+    def __bool__(self):
         return self.value is not None
 
     def __str__(self):
@@ -810,7 +810,7 @@ class MetadataHandler(GExiv2.Metadata):
                      'Exif.Image.XPKeywords', 'Exif.Image.XPSubject',
                      'Exif.Image.XPTitle'):
             # decode UCS2 string
-            file_value = bytearray(map(int, file_value.split()))
+            file_value = bytearray(list(map(int, file_value.split())))
             file_value = file_value.decode('utf_16').strip('\x00')
         elif tag == 'Exif.Image.TimeZoneOffset':
             # convert hours to minutes

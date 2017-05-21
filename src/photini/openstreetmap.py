@@ -17,7 +17,7 @@
 ##  along with this program.  If not, see
 ##  <http://www.gnu.org/licenses/>.
 
-from __future__ import unicode_literals
+
 
 import os
 import webbrowser
@@ -186,7 +186,7 @@ class OpenStreetMap(PhotiniMap):
         self.image_list.select_images(self.marker_images[marker_id])
         self.image_list.blockSignals(blocked)
         self.coords.setEnabled(True)
-        for other_id, images in self.marker_images.items():
+        for other_id, images in list(self.marker_images.items()):
             if other_id != marker_id:
                 self.JavaScript('enableMarker("{}", {:d})'.format(
                     other_id, False))

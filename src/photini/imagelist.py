@@ -17,7 +17,7 @@
 ##  along with this program.  If not, see
 ##  <http://www.gnu.org/licenses/>.
 
-from __future__ import unicode_literals
+
 
 import six
 from datetime import datetime
@@ -178,10 +178,10 @@ class Image(QtWidgets.QFrame):
         status = ''
         # set 'geotagged' status
         if self.metadata.latlong:
-            status += six.unichr(0x2690)
+            status += six.chr(0x2690)
         # set 'unsaved' status
         if changed:
-            status += six.unichr(0x26A1)
+            status += six.chr(0x26A1)
         self.status.setText(status)
         self._elide_name()
         if changed:

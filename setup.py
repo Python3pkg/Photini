@@ -62,7 +62,7 @@ if git:
                 latest = tag.commit.committed_date
                 last_release = tag_name
             # set current version number (calendar based)
-            major, minor, micro = map(int, last_release.split('.'))
+            major, minor, micro = list(map(int, last_release.split('.')))
             today = date.today()
             if today.year == major and today.month == minor:
                 micro += 1

@@ -17,7 +17,7 @@
 ##  along with this program.  If not, see
 ##  <http://www.gnu.org/licenses/>.
 
-from __future__ import unicode_literals
+
 
 from collections import namedtuple
 
@@ -58,7 +58,7 @@ from photini.spelling import SpellingHighlighter
 
 qt_version_info = namedtuple(
     'qt_version_info', ('major', 'minor', 'micro'))._make(
-        map(int, QtCore.QT_VERSION_STR.split('.')))
+        list(map(int, QtCore.QT_VERSION_STR.split('.'))))
 
 def image_types():
     result = [

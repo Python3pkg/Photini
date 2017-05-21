@@ -17,7 +17,7 @@
 ##  along with this program.  If not, see
 ##  <http://www.gnu.org/licenses/>.
 
-from __future__ import unicode_literals
+
 
 from collections import defaultdict
 from datetime import datetime
@@ -80,8 +80,8 @@ class KeywordsEditor(QtWidgets.QWidget):
         super(KeywordsEditor, self).__init__(*arg, **kw)
         self.config_store = QtWidgets.QApplication.instance().config_store
         self.league_table = defaultdict(int)
-        for keyword, score in eval(self.config_store.get(
-            'descriptive', 'keywords', '{}')).items():
+        for keyword, score in list(eval(self.config_store.get(
+            'descriptive', 'keywords', '{}')).items()):
             self.league_table[keyword] = score
         layout = QtWidgets.QHBoxLayout()
         layout.setContentsMargins(0, 0, 0, 0)

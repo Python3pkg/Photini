@@ -42,8 +42,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Photini'
-copyright = u'2012-17, Jim Easterbrook'
+project = 'Photini'
+copyright = '2012-17, Jim Easterbrook'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -207,8 +207,8 @@ htmlhelp_basename = 'Photinidoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'Photini.tex', u'Photini Documentation',
-   u'Jim Easterbrook', 'manual'),
+  ('index', 'Photini.tex', 'Photini Documentation',
+   'Jim Easterbrook', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -240,6 +240,6 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'photini', u'Photini Documentation',
-     [u'Jim Easterbrook'], 1)
+    ('index', 'photini', 'Photini Documentation',
+     ['Jim Easterbrook'], 1)
 ]

@@ -17,7 +17,7 @@
 ##  along with this program.  If not, see
 ##  <http://www.gnu.org/licenses/>.
 
-from __future__ import unicode_literals
+
 
 from collections import defaultdict
 import logging
@@ -134,7 +134,7 @@ class LocationInfo(QtWidgets.QWidget):
             'taken': LocationWidgets(self),
             'shown': LocationWidgets(self)
             }
-        self.swap = SquareButton(six.unichr(0x21c4))
+        self.swap = SquareButton(six.chr(0x21c4))
         self.swap.setStyleSheet('QPushButton { font-size: 10px }')
         self.swap.setFont(QtGui.QFont("Dejavu Sans"))
         if not self.swap.fontInfo().exactMatch():
@@ -389,7 +389,7 @@ class PhotiniMap(QtWidgets.QSplitter):
                 image.metadata.latlong = None
             return
         try:
-            lat, lng = map(float, text.split(','))
+            lat, lng = list(map(float, text.split(',')))
         except Exception:
             self.display_coords()
             return
@@ -502,7 +502,7 @@ class PhotiniMap(QtWidgets.QSplitter):
     def new_selection(self, selection):
         self.coords.setEnabled(bool(selection))
         self.location_info.setEnabled(bool(selection))
-        for marker_id, images in self.marker_images.items():
+        for marker_id, images in list(self.marker_images.items()):
             self.JavaScript('enableMarker("{}", {:d})'.format(
                 marker_id, any([image.selected for image in images])))
         self.display_coords()
